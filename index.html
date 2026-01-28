@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard de Estratégias de Conteúdo | Cowflix</title>
+    <meta name="description" content="Dashboard completo das estratégias de conteúdo da Cowflix com formatos, exemplos e gatilhos mentais.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #00d084;
+            --primary-dark: #009656;
+            --primary-light: #e6f9f0;
+            --text-dark: #1a1a1a;
+            --text-light: #666666;
+            --bg-light: #f8f9fa;
+            --border-color: #e0e0e0;
+            --strategy-1: #d4a574;
+            --strategy-2: #00d084;
+            --strategy-3: #4a90e2;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 208, 132, 0.15);
+        }
+
+        header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .intro-section {
+            background-color: var(--bg-light);
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 3rem;
+            border-left: 4px solid var(--primary);
+        }
+
+        .intro-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .intro-section p {
+            color: var(--text-light);
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        .strategies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .strategy-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 4px solid;
+        }
+
+        .strategy-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .strategy-card.strategy-1 {
+            border-top-color: var(--strategy-1);
+        }
+
+        .strategy-card.strategy-2 {
+            border-top-color: var(--strategy-2);
+        }
+
+        .strategy-card.strategy-3 {
+            border-top-color: var(--strategy-3);
+        }
+
+        .strategy-header {
+            padding: 1.5rem;
+            color: white;
+            font-weight: 600;
+        }
+
+        .strategy-card.strategy-1 .strategy-header {
+            background-color: var(--strategy-1);
+        }
+
+        .strategy-card.strategy-2 .strategy-header {
+            background-color: var(--strategy-2);
+        }
+
+        .strategy-card.strategy-3 .strategy-header {
+            background-color: var(--strategy-3);
+        }
+
+        .strategy-header h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .strategy-header .number {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .strategy-content {
+            padding: 1.5rem;
+        }
+
+        .strategy-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .strategy-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .strategy-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+        }
+
+        .strategy-value {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            line-height: 1.5;
+        }
+
+        .strategy-value.strategy-1-text {
+            color: var(--strategy-1);
+        }
+
+        .strategy-value.strategy-2-text {
+            color: var(--strategy-2);
+        }
+
+        .strategy-value.strategy-3-text {
+            color: var(--strategy-3);
+        }
+
+        .comparison-table {
+            width: 100%;
+            margin-bottom: 3rem;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .comparison-table th {
+            background-color: var(--bg-light);
+            padding: 1.5rem;
+            text-align: left;
+            font-weight: 600;
+            color: var(--text-dark);
+            border-bottom: 2px solid var(--border-color);
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+        }
+
+        .comparison-table td {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-light);
+        }
+
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .comparison-table tr:hover {
+            background-color: var(--bg-light);
+        }
+
+        .summary-section {
+            background: linear-gradient(135deg, var(--primary-light) 0%, rgba(0, 208, 132, 0.05) 100%);
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--primary);
+        }
+
+        .summary-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .summary-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 3px solid var(--primary);
+        }
+
+        .summary-item h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .summary-item p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .details-section {
+            background-color: var(--bg-light);
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+        }
+
+        .details-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+        }
+
+        .detail-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid;
+        }
+
+        .detail-item.strategy-1 {
+            border-left-color: var(--strategy-1);
+        }
+
+        .detail-item.strategy-2 {
+            border-left-color: var(--strategy-2);
+        }
+
+        .detail-item.strategy-3 {
+            border-left-color: var(--strategy-3);
+        }
+
+        .detail-item h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .detail-item ul {
+            margin-left: 1.5rem;
+            color: var(--text-light);
+        }
+
+        .detail-item li {
+            margin-bottom: 0.5rem;
+        }
+
+        .cta-section {
+            text-align: center;
+            padding: 2rem;
+            background-color: var(--bg-light);
+            border-radius: 12px;
+            margin-top: 3rem;
+        }
+
+        .cta-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .cta-section p {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 208, 132, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 208, 132, 0.4);
+        }
+
+        footer {
+            background-color: var(--text-dark);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+
+            .container {
+                padding: 1.5rem;
+            }
+
+            .strategies-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .comparison-table th,
+            .comparison-table td {
+                padding: 1rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .strategy-card {
+            animation: fadeIn 0.6s ease forwards;
+        }
+
+        .strategy-card:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .strategy-card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .strategy-card:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Estratégias de Conteúdo</h1>
+        <p>Dashboard Completo para Atrair e Engajar Produtores de Leite</p>
+    </header>
+
+    <div class="container">
+        <div class="intro-section">
+            <h2>Visão Geral</h2>
+            <p>
+                Com base no Perfil de Cliente Ideal (ICP) identificado — produtores e profissionais técnicos de médio e grande porte focados em rentabilidade e excelência técnica — as estratégias de conteúdo devem focar em <strong>autoridade técnica</strong>, <strong>prova de resultado</strong> e <strong>educação estratégica</strong>.
+            </p>
+        </div>
+
+        <div class="strategies-grid">
+            <!-- Estratégia 1 -->
+            <div class="strategy-card strategy-1">
+                <div class="strategy-header">
+                    <div class="number">Estratégia 1</div>
+                    <h3>Diagnóstico de Perda Invisível</h3>
+                </div>
+                <div class="strategy-content">
+                    <div class="strategy-item">
+                        <div class="strategy-label">Foco Principal</div>
+                        <div class="strategy-value strategy-1-text">Impacto Financeiro</div>
+                    </div>
+                    <div class="strategy-item">
+                        <div class="strategy-label">Formato</div>
+                        <div class="strategy-value strategy-1-text">Calculadoras, Infográficos, Vídeos Curtos</div>
+                    </div>
+                    <div class="strategy-item">
+                        <div class="strategy-label">Gatilho Mental</div>
+                        <div class="strategy-value strategy-1-text">Aversão à Perda</div>
+                    </div>
+                    <div class="strategy-item">
+                        <div class="strategy-label">Objetivo</div>
+                        <div class="strategy-value strategy-1-text">Gerar urgência e consciência de dor</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Estratégia 2 -->
+            <div class="strategy-card strategy-2">
+                <div class="strategy-header">
+                    <div class="number">Estratégia 2</div>
+                    <h3>Estudos de Caso: Do Campo para o Bolso</h3>
+                </div>
+                <div class="strategy-content">
+                    <div class="strategy-item">
+                        <div class="strategy-label">Foco Principal</div>
+                        <div class="strategy-value strategy-2-text">Validação Real</div>
+                    </div>
+                    <div class="strategy-item">
+                        <div class="strategy-label">Formato</div>
+                        <div class="strategy-value strategy-2-text">Webinars, Carrosséis, Podcasts</div>
+                    </div>
+                    <div class="strategy-item">
+                        <div class="strategy-label">Gatilho Mental</div>
+                        <div class="strategy-value strategy-2-text">Autoridade e Prova Social</div>
+                    </div>
+                    <div class="strategy-item">
+                        <div class="strategy-label">Objetivo</div>
+                        <div class="strategy-value strategy-2-text">Quebrar objeções e gerar confiança</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Estratégia 3 -->
+            <div class="strategy-card strategy-3">
+                <div class="strategy-header">
+                    <div class="number">Estratégia 3</div>
+                    <h3>Pílulas de Conhecimento de Especialista</h3>
+                </div>
+                <div class="strategy-content">
+                    <div class="strategy-item">
+                        <div class="strategy-label">Foco Principal</div>
+                        <div class="strategy-value strategy-3-text">Autoridade Técnica</div>
+                    </div>
+                    <div class="strategy-item">
+                        <div class="strategy-label">Formato</div>
+                        <div class="strategy-value strategy-3-text">Vídeos Técnicos, Newsletters</div>
+                    </div>
+                    <div class="strategy-item">
+                        <div class="strategy-label">Gatilho Mental</div>
+                        <div class="strategy-value strategy-3-text">Reciprocidade e Curiosidade</div>
+                    </div>
+                    <div class="strategy-item">
+                        <div class="strategy-label">Objetivo</div>
+                        <div class="strategy-value strategy-3-text">Demonstrar a qualidade do conteúdo</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="summary-section">
+            <h2>Tabela Comparativa</h2>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Estratégia</th>
+                        <th>Foco Principal</th>
+                        <th>Canal Recomendado</th>
+                        <th>Objetivo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Diagnóstico de Perda</strong></td>
+                        <td>Impacto Financeiro</td>
+                        <td>Instagram / LinkedIn</td>
+                        <td>Gerar urgência e consciência de dor</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Estudos de Caso</strong></td>
+                        <td>Validação Real</td>
+                        <td>YouTube / E-mail Marketing</td>
+                        <td>Quebrar objeções e gerar confiança</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Pílulas Técnicas</strong></td>
+                        <td>Autoridade Técnica</td>
+                        <td>YouTube / WhatsApp Groups</td>
+                        <td>Demonstrar a qualidade do conteúdo</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="details-section">
+            <h2>Detalhes das Estratégias</h2>
+
+            <div class="detail-item strategy-1">
+                <h3>1. Diagnóstico de Perda Invisível</h3>
+                <p><strong>Descrição:</strong> Este público é altamente sensível a custos e eficiência. O objetivo aqui é mostrar que o conhecimento técnico da Cowflix não é apenas "teoria", mas uma ferramenta para estancar perdas financeiras que o produtor muitas vezes não percebe.</p>
+                <ul>
+                    <li><strong>Formato:</strong> Calculadoras de impacto, infográficos comparativos e vídeos curtos (Reels/YouTube Shorts) com o tema "Quanto custa não saber disso?".</li>
+                    <li><strong>Exemplo de Conteúdo:</strong> "O custo real de um caso de mastite subclínica no seu rebanho: muito além do descarte de leite".</li>
+                    <li><strong>Gatilho Mental:</strong> Aversão à Perda. Ao quantificar o prejuízo de uma técnica mal aplicada ou de uma doença não detectada, você cria a necessidade imediata pela solução.</li>
+                </ul>
+            </div>
+
+            <div class="detail-item strategy-2">
+                <h3>2. Estudos de Caso: "Do Campo para o Bolso"</h3>
+                <p><strong>Descrição:</strong> Profissionais técnicos e grandes produtores valorizam a prova social de quem "fala a mesma língua" e enfrenta os mesmos desafios. Esta estratégia foca em documentar resultados reais obtidos por alunos ou especialistas da plataforma.</p>
+                <ul>
+                    <li><strong>Formato:</strong> Webinars de "Bastidores da Fazenda", carrosséis de "Antes e Depois" de índices zootécnicos e entrevistas em formato de podcast (Cowcoffee).</li>
+                    <li><strong>Exemplo de Conteúdo:</strong> "Como a Fazenda X reduziu o intervalo entre partos em 15 dias aplicando o protocolo de IATF discutido na Cowflix".</li>
+                    <li><strong>Gatilho Mental:</strong> Autoridade e Prova Social. Ver um par (outro produtor de sucesso) obtendo resultados tangíveis valida a eficácia da plataforma e reduz a barreira de compra.</li>
+                </ul>
+            </div>
+
+            <div class="detail-item strategy-3">
+                <h3>3. Pílulas de "Conhecimento de Especialista" (Deep Dive)</h3>
+                <p><strong>Descrição:</strong> O ICP da Cowflix tem nível de conhecimento intermediário a avançado. Conteúdos superficiais não o atraem. Esta estratégia visa entregar "pequenas vitórias" técnicas que demonstrem a profundidade do que ele encontrará na área de membros.</p>
+                <ul>
+                    <li><strong>Formato:</strong> Vídeos técnicos de 3 a 5 minutos focados em um detalhe específico (ex: interpretação de um laudo laboratorial ou ajuste fino de dieta) e Newsletters técnicas semanais.</li>
+                    <li><strong>Exemplo de Conteúdo:</strong> "3 detalhes na interpretação da CCS que mudam sua estratégia de secagem de vacas".</li>
+                    <li><strong>Gatilho Mental:</strong> Reciprocidade e Curiosidade. Ao entregar um valor técnico real gratuitamente, você estabelece autoridade e deixa o lead com o desejo de acessar o conteúdo completo.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="summary-section">
+            <h2>Resumo Executivo</h2>
+            <div class="summary-grid">
+                <div class="summary-item">
+                    <h4>💰 Diagnóstico de Perda</h4>
+                    <p>Cria consciência do impacto financeiro silencioso através da aversão à perda, gerando urgência e motivação para ação imediata.</p>
+                </div>
+                <div class="summary-item">
+                    <h4>📊 Estudos de Caso</h4>
+                    <p>Valida a eficácia através de prova social e autoridade, quebrando objeções e construindo confiança nos resultados reais.</p>
+                </div>
+                <div class="summary-item">
+                    <h4>💡 Pílulas Técnicas</h4>
+                    <p>Demonstra qualidade técnica através de reciprocidade e curiosidade, posicionando a Cowflix como autoridade indispensável.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h2>Transforme Sua Estratégia</h2>
+            <p>Essas estratégias visam transformar a Cowflix de uma "plataforma de cursos" em uma <strong>ferramenta indispensável de gestão e lucratividade</strong> para o pecuarista de leite moderno.</p>
+            <a href="#" class="cta-button">Começar Agora</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Cowflix. Todos os direitos reservados. | Dashboard de Estratégias de Conteúdo</p>
+    </footer>
+</body>
+</html>
